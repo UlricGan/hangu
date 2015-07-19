@@ -1,0 +1,46 @@
+{
+  "name": "hangu",
+  "version": "0.0.1",
+  "description": "pass of luoyi",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_PATH=\"./src\" NODE_ENV=\"production\" PORT=\"8080\" node --harmony ./babel.server",
+    "build": "node ./node_modules/webpack/bin/webpack.js --verbose --colors --display-error-details --config webpack/product.config.js",
+    "start-dev": "NODE_PATH=\"./src\" NODE_ENV=\"development\" node --harmony ./babel.server",
+    "watch-client": "UV_THREADPOOL_SIZE=100 NODE_PATH=\"./src\" node webpack/webpack-dev-server.js",
+    "dev": "node ./node_modules/concurrently/src/main.js --kill-others \"npm run watch-client\" \"npm run start-dev\""
+  },
+  "keywords": [
+    "koa",
+    "react"
+  ],
+  "author": "ulricgan",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^5.6.23",
+    "babel-plugin-typecheck": "^1.1.0",
+    "koa": "^0.21.0",
+    "react": "^0.13.3",
+    "react-redux": "^0.2.2",
+    "react-router": "^1.0.0-beta3",
+    "redux": "^1.0.0-rc",
+    "superagent": "^1.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer-loader": "^2.0.0",
+    "babel-core": "^5.7.2",
+    "babel-loader": "^5.3.2",
+    "babel-runtime": "^5.7.0",
+    "concurrently": "^0.1.1",
+    "css-loader": "^0.15.4",
+    "file-loader": "^0.8.4",
+    "koa-router": "^5.1.2",
+    "koa-static-cache": "^3.1.2",
+    "react-hot-loader": "^1.2.8",
+    "redux-devtools": "^0.1.1",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.10.1",
+    "webpack-dev-server": "^1.10.1",
+    "extract-text-webpack-plugin": "^0.3.1"
+  }
+}

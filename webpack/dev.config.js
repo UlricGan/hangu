@@ -6,8 +6,8 @@ var writeStats = require('./utils/writeStats')
 var notifyStats = require('./utils/notifyStats')
 
 var assetsPath = path.resolve(__dirname, '../static/dist')
-var host = 'localhost'
-var port = 3001
+var host = 'ganhongxiang.jinrong.baixing.net'
+var port = 3002
 
 module.exports = {
 	devtool: 'eval-source-map',

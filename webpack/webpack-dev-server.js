@@ -2,7 +2,7 @@ var WebpackDevServer = require('webpack-dev-server')
 var webpack = require('webpack')
 var config = require('./dev.config')
 
-var host = 'localhost'
+var host = '127.0.0.1'
 var port = 3001
 
 var serverOptions = {

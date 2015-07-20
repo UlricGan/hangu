@@ -1,7 +1,9 @@
 var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var strip = require('strip-loader');
 
+var writeStats = require('./utils/writeStats')
 var assetsPath = path.join(__dirname, '../static/dist');
 
 module.exports = {
@@ -19,7 +21,7 @@ module.exports = {
 	module: {
 		loaders: [
 			{ test: /\.(jpe?g|png|gif|svg)$/, loader: 'file' },
-			{ test: /\.js$/, exclude: /node_modules/, loaders: [strip.loader('debug'), 'babel?stage=0&optional=runtime&plugins=typecheck']},
+			{ test: /\.jsx?$/, exclude: /node_modules/, loaders: [strip.loader('debug'), 'babel?stage=0&optional=runtime&plugins=typecheck']},
 			{ test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 2 version!sass') }
 		]
 	},
@@ -38,6 +40,8 @@ module.exports = {
 		new webpack.DefinePlugin({
 			__CLIENT__: true,
 			__SERVER__: false,
+			__DEVELOPMENT__: false,
+			__DEVTOOLS__: false,
 			'process.env': {
 				BROWSER: JSON.stringify(true),
 				NODE_ENV: JSON.stringify('production')
@@ -51,9 +55,13 @@ module.exports = {
 		// uglify
 		new webpack.optimize.UglifyJsPlugin({
 			compress: {
-				warnigs: false
+				warnings: false
 			}
-		})
+		}),
+
+		function () {
+			this.plugin('done', writeStats)
+		}
 
 	]
 }

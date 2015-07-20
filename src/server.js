@@ -16,7 +16,11 @@ const router = koaRouter()
 
 let webpackStats
 
-app.use(staticCache(path.join(__dirname, 'static'), {buffrt: false, maxAge: 0}))
+if (!__DEVELOPMENT__) {
+  webpackStats = require('../webpack-stats.json')
+}
+
+//app.use(staticCache(path.join(__dirname, 'static'), {buffrt: false, maxAge: 0}))
 
 app
 	.use(router.routes())
@@ -37,9 +41,20 @@ router.all('/', function *() {
 	const client = new ApiClient(this.request)
 	const store = createStore(client)
 	const location = new Location(this.request.path, this.request.query)
-	const component = yield universalRouter(location, undefined, store)
+	let component, body
+	try {
+		component = yield universalRouter(location, undefined, store)
+	}
+	catch (error) {
+		this.throw(error, 500)
+	}
 
-	const body = getLayout(component, store, webpackStats)
+	try {
+		body = getLayout(component, store, webpackStats)
+	}
+	catch (error) {
+		this.throw(error, 500)
+	}
 
 	this.body = body
 })

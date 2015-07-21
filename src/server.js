@@ -26,11 +26,11 @@ app
 	.use(router.routes())
 	.use(router.allowedMethods())
 
-router.get('/api/loadInfo', function *() {
-	this.status = 200
-	const num = Math.random() * 10000
-	this.body = {text: `it works! ${num}`}
-})
+// router.get('/api/loadInfo', function *() {
+// 	this.status = 200
+// 	const num = Math.random() * 10000
+// 	this.body = {text: `it works! ${num}`}
+// })
 
 router.all('/', function *() {
 	if (__DEVELOPMENT__) {

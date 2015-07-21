@@ -3,8 +3,11 @@ import superagent from 'superagent'
 
 function formatUrl(path) {
 	const adjustedPath = path[0] !== '/' ? '/' + path : path
-
-	return `http://localhost:8080/api${adjustedPath}`
+	if (__CLIENT__) {
+		return `/api${adjustedPath}`
+	} else {
+		return `http://127.0.0.1:58000/api${adjustedPath}`
+	}
 }
 
 export default class ApiClient {
@@ -27,8 +30,10 @@ export default class ApiClient {
 						}
 						request.end((err, res) => {
 							if (err) {
+								console.log(err);
 								reject(res.body || err)
 							} else {
+								console.log(res.body);
 								resolve(res.body)
 							}
 						})

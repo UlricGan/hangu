@@ -62,6 +62,6 @@ npm run dev
 
 ###Building and Running product server
 ```
-npm run building
+npm run build
 npm run start
 ```

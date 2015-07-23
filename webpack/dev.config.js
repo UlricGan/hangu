@@ -2,12 +2,13 @@ var path = require('path')
 var webpack = require('webpack')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
+var config = require('../config')
 var writeStats = require('./utils/writeStats')
 var notifyStats = require('./utils/notifyStats')
 
 var assetsPath = path.resolve(__dirname, '../static/dist')
-var host = 'ganhongxiang.jinrong.baixing.net'
-var port = 3002
+var host = config.staticHost
+var port = config.staticPort
 
 module.exports = {
 	devtool: 'eval-source-map',

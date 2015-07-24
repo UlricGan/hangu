@@ -24,7 +24,7 @@ app
 	.use(router.routes())
 	.use(router.allowedMethods())
 
-router.all('/', function *() {
+router.all('/*', function *() {
 	if (__DEVELOPMENT__) {
 		webpackStats = require('../webpack-stats.json')
 		delete require.cache[require.resolve('../webpack-stats.json')]

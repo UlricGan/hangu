@@ -3,10 +3,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { createTransitionHook } from '../universalRouter'
-import { isLoaded as isInfoLoaded } from '../reducers/info'
-import { load as loadInfo } from '../actions/infoActions'
 
-class App extends Component {
+export default class App extends Component {
 	static contextTypes = {
 		router: PropTypes.object.isRequired,
 		store: PropTypes.object.isRequired
@@ -28,24 +26,3 @@ class App extends Component {
 		)
 	}
 }
-
-export default class AppContainer {
-
-	static fetchData(store) {
-		const promises = []
-		if (!isInfoLoaded(store.getState())) {
-			promises.push(store.dispatch(loadInfo()))
-		}
-		return Promise.all(promises)
-	}
-
-	render() {
-
-		return (
-			<App>
-				{this.props.children}
-			</App>
-		)
-	}
-}
-

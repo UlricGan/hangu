@@ -1,1 +1,1 @@
-export info from './info'
+export recommend from './recommend'

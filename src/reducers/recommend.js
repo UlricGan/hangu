@@ -1,28 +1,28 @@
 import {
-	INFO_LOAD,
-	INFO_LOAD_SUCCESS,
-	INFO_LOAD_FAIL
+	RECOMMEND_LOAD,
+	RECOMMEND_LOAD_SUCCESS,
+	RECOMMEND_LOAD_ERROR
 } from '../constants/actionTypes'
 
 const initialState = {
 	loaded: false
 }
 
-export default function info(state = initialState, action = {}) {
+export default function recommend(state = initialState, action = {}) {
 	switch (action.type) {
-		case INFO_LOAD:
+		case RECOMMEND_LOAD:
 			return {
 				...state,
 				loading: true
 			}
-		case INFO_LOAD_SUCCESS:
+		case RECOMMEND_LOAD_SUCCESS:
 			return {
 				...state,
 				loading: false,
 				loaded: true,
 				data: action.result
 			}
-		case INFO_LOAD_FAIL:
+		case RECOMMEND_LOAD_ERROR:
 			return {
 				...state,
 				loading: false,
@@ -35,5 +35,5 @@ export default function info(state = initialState, action = {}) {
 }
 
 export function isLoaded(globalState) {
-	return globalState.info && globalState.info.loaded
+	return globalState.recommend && globalState.recommend.loaded
 }

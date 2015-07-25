@@ -9,7 +9,7 @@ import path from 'path'
 import ApiClient from './ApiClient'
 import createStore from './redux/create'
 import universalRouter from './universalRouter'
-import getLayout from './views/get-layout'
+import Html from './views/Html'
 
 const app = koa()
 const router = koaRouter()
@@ -42,7 +42,12 @@ router.all('/*', function *() {
 	}
 
 	try {
-		body = getLayout(component, store, webpackStats)
+		body = '<!doctype html>\n' +
+		        React.renderToString(<Html
+		        	                      component={component}
+		        	                      store={store}
+		        	                      webpackStats={webpackStats}
+		        	                  />)
 	}
 	catch (error) {
 		this.throw(error, 500)

@@ -2,7 +2,7 @@
 import superagent from 'superagent'
 import config from '../config'
 
-export default class ApiClient {
+class ApiClient_ {
 	constructor(req) {
 		['get', 'post', 'put', 'patch', 'del'].
 			forEach((method) => {
@@ -33,7 +33,6 @@ export default class ApiClient {
 	}
 }
 
-
 function formatUrl(path) {
 	const adjustedPath = path[0] !== '/' ? '/' + path : path
 	if (__CLIENT__) {
@@ -42,3 +41,8 @@ function formatUrl(path) {
 		return `http://${config.apiHost}:${config.apiPort}/api${adjustedPath}`
 	}
 }
+
+// 据说这样可以解决ApiClient undefinded的问题
+const ApiClient = ApiClient_
+
+export default ApiClient

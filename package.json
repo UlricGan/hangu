@@ -25,7 +25,8 @@
     "react-router": "^1.0.0-beta3",
     "redux": "^1.0.0-rc",
     "strip-loader": "^0.1.0",
-    "superagent": "^1.2.0"
+    "superagent": "^1.2.0",
+    "serialize-javascript" : "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer-loader": "^2.0.0",

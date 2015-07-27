@@ -1,7 +1,7 @@
 import {
 	RECOMMEND_LOAD,
 	RECOMMEND_LOAD_SUCCESS,
-	RECOMMEND_LOAD_ERROR
+	RECOMMEND_LOAD_FAIL
 } from '../constants/actionTypes'
 
 const initialState = {
@@ -22,7 +22,7 @@ export default function recommend(state = initialState, action = {}) {
 				loaded: true,
 				data: action.result
 			}
-		case RECOMMEND_LOAD_ERROR:
+		case RECOMMEND_LOAD_FAIL:
 			return {
 				...state,
 				loading: false,

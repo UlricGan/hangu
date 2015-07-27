@@ -24,7 +24,8 @@ export function periodChange(period) {
 export function load(query) {
 	return {
 		types: [SEARCH_LOAD, SEARCH_LOAD_SUCCESS, SEARCH_LOAD_FAIL],
-		promise: (client) => client.get('/getListingAds', {...query})
+		query,
+		promise: (client) => client.get('/getListingAds', {params: {...query}})
 	}
 }
 

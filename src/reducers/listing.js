@@ -8,12 +8,7 @@ import {
 } from '../constants/actionTypes'
 
 const initialState = {
-	loaded: false,
-	query: {
-		amount: 5,
-		period: 12,
-		page: 0
-	}
+	loaded: false
 }
 
 export default function listing(state = initialState, action = {}) {
@@ -37,6 +32,7 @@ export default function listing(state = initialState, action = {}) {
 		case SEARCH_LOAD:
 			return {
 				...state,
+				query: action.query,
 				loading: true
 			}
 		case SEARCH_LOAD_SUCCESS:

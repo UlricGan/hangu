@@ -22,7 +22,7 @@ export default class RecommendContainer {
 	static fetchData(store, routeParams) {
 		let promises = []
 		if (!isRecommendLoaded(store.getState())) {
-			promises.push(store.dispatch(loadRecommend(routeParams)))
+			promises.push(store.dispatch(loadRecommend(routeParams.recommendType)))
 		}
 
 		return Promise.all(promises)

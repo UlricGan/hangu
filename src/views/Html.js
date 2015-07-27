@@ -5,7 +5,7 @@ export default class Html extends Component {
 	static propTypes = {
 		webpackStats: PropTypes.object,
 		component: PropTypes.object,
-		store: PropTypes,
+		store: PropTypes.object,
 	}
 
 	render() {

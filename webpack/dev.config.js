@@ -50,22 +50,23 @@ module.exports = {
 
 		// hot reload
 		new webpack.HotModuleReplacementPlugin(),
+    new webpack.WatchIgnorePlugin([/\.json$/]),
 		new webpack.NoErrorsPlugin(),
 		new webpack.DefinePlugin({
 			__CLIENT__: true,
 			__SERVER__: false,
 			__DEVELOPMENT__: true,
-			__DEVTOOLS__: true
+			__DEVTOOLS__: false  //redux-devtools
 		}),
 
+		function() {
+			this.plugin('done', notifyStats)
+		},
 		function () {
 			this.plugin('done', function(stats) {
 				writeStats.call(this, stats, 'dev')
 			})
 		},
-		function() {
-			this.plugin('done', notifyStats)
-		}
 
 	]
 }

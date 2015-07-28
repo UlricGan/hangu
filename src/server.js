@@ -33,27 +33,26 @@ router.all('/*', function *() {
 	const client = new ApiClient(this.request)
 	const store = createStore(client)
 	const location = new Location(this.request.path, this.request.query)
-	let component, body
 	try {
-		component = yield universalRouter(location, undefined, store)
-	}
-	catch (error) {
-		this.throw(error, 500)
-	}
+		const {component, transition, isRedirect) = yield universalRouter(location, undefined, store)
 
-	try {
-		body = '<!doctype html>\n' +
+		if (isRedirect) {
+			this.redirect(transition.redirectInfo.pathname)
+			return
+		}
+
+		const body = '<!doctype html>\n' +
 		        React.renderToString(<Html
 		        	                      component={component}
 		        	                      store={store}
 		        	                      webpackStats={webpackStats}
 		        	                  />)
+		this.body = body
 	}
 	catch (error) {
 		this.throw(error, 500)
 	}
 
-	this.body = body
 })
 
 try {

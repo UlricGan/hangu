@@ -30,7 +30,8 @@ module.exports = function writeStats(stats, env) {
 
 	var cssModules = {}
 
-  var namePrefix = "./~/css-loader?modules&importLoaders=2&localIdentName=[local]___[hash:base64:5]!./~/autoprefixer-loader?browsers=last 2 version!./~/stylus-loader?sourceMap=true!";
+
+  var namePrefix = "./~/css-loader?modules&importLoaders=2&localIdentName=[local]___[hash:base64:5]!./~/autoprefixer-loader?browsers=last 2 version!./~/stylus-loader?sourceMap=true!"
 
 	json.modules.filter(function(m) {
 		if (env === 'prod') {

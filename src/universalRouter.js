@@ -26,16 +26,30 @@ export function createTransitionHook(store) {
 
 export default function universalRouter(location, history, store) {
 	return new Promise((resolve, reject) => {
-		Router.run(routes, location, [createTransitionHook(store)], (error, initialState) => {
+		Router.run(routes, location, [createTransitionHook(store)], (error, initialState, transition) => {
 			if (error) {
 				reject(error)
 			} else {
-				if (history) {
-					initialState.history = history
+				if (transition && transition.redirectInfo) {
+					resolve({
+						transition,
+						isRedirect: true
+					})
+				} else {
+					if (history) {
+						initialState.history = history
+					}
+
+					const component = (
+						<Provider store={store} key="provider">
+							{() => <Router {...initialState} children={routes} />}
+						</Provider>
+					)
+					resolve({
+						component,
+						isRedirect: false
+					})
 				}
-				resolve(<Provider store={store} key="provider">
-					{() => <Router {...initialState} children={routes} />}
-				</Provider>)
 			}
 		})
 	})

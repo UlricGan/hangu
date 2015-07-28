@@ -15,7 +15,7 @@ export default class Html extends Component {
 				<head>
 					<meta charSet="utf-8" />
 					<title>函谷</title>
-					{webpackStats.css.map((css, i) => <link href={css} ref={i}
+					{webpackStats.css.files.map((css, i) => <link href={css} ref={i}
 				                       rel="stylesheet" type="text/css" />)}
 				</head>
 				<body>

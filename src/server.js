@@ -26,8 +26,8 @@ app
 
 router.all('/*', function *() {
 	if (__DEVELOPMENT__) {
-		webpackStats = require('../webpack-stats.json')
 		delete require.cache[require.resolve('../webpack-stats.json')]
+		webpackStats = require('../webpack-stats.json')
 	}
 
 	const client = new ApiClient(this.request)

@@ -43,6 +43,7 @@
     "koa-static-cache": "^3.1.2",
     "react-hot-loader": "^1.2.8",
     "redux-devtools": "^0.1.1",
+    "piping": "^0.2.0",
     "url-loader": "^0.5.6",
     "webpack": "^1.10.1",
     "webpack-dev-server": "^1.10.1",

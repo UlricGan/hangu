@@ -11,4 +11,13 @@ global.__DEVELOPMENT__ = process.env.NODE_ENV !== 'production'
 delete global.__BROWSER__
 
 
+if (__DEVELOPMENT__) {
+	if (!require('piping')({
+		hook: true,
+		ignore: /(\/\.|~$|\.json|\.styl$)/i
+	})) {
+		return;
+	}
+}
+
 require('./src/server')

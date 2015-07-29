@@ -1,6 +1,5 @@
 import koa from 'koa'
 import koaRouter from 'koa-router'
-import staticCache from 'koa-static-cache'
 import React from 'react'
 import Location from 'react-router/lib/Location'
 import { Provider } from 'react-redux'
@@ -34,7 +33,7 @@ router.all('/*', function *() {
 	const store = createStore(client)
 	const location = new Location(this.request.path, this.request.query)
 	try {
-		const {component, transition, isRedirect) = yield universalRouter(location, undefined, store)
+		const {component, transition, isRedirect} = yield universalRouter(location, undefined, store)
 
 		if (isRedirect) {
 			this.redirect(transition.redirectInfo.pathname)

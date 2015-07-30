@@ -9,6 +9,17 @@ var writeStats = require('./utils/writeStats')
 var relativeAssetsPath = '../static/dist'
 var assetsPath = path.join(__dirname, '../static/dist')
 
+var AUTOPREFIXER_BROWSERS = [
+  'Android 2.3',
+  'Android >= 4',
+  'Chrome >= 20',
+  'Firefox >= 24',
+  'Explorer >= 8',
+  'iOS >= 6',
+  'Opera >= 12',
+  'Safari >= 6'
+]
+
 module.exports = {
 	devtool: 'source-map',
 	context: path.resolve(__dirname, '..'),
@@ -26,9 +37,14 @@ module.exports = {
 			{ test: /\.(jpe?g|png|gif|svg)$/, loader: 'file' },
 			{ test: /\.jsx?$/, exclude: /node_modules/, loaders: [strip.loader('debug'), 'babel?stage=0&optional=runtime&plugins=typecheck']},
 			{ test: /\.json$/, loader: 'json-loader' },
-			{ test: /\.styl$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2!autoprefixer?browsers=last 2 version!stylus?sourceMap=true') }
+			{ test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=2&localIdentName=[local]___[hash:base64:5]!postcss-loader')}
 		]
 	},
+	postcss: [
+    require('postcss-nested')(),
+    require('cssnext')(),
+    require('autoprefixer-core')(AUTOPREFIXER_BROWSERS)
+  ],
 	resolve: {
 		extensions: ['', '.json', '.js', '.jsx']
 	},

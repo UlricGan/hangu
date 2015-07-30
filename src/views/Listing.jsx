@@ -12,8 +12,8 @@ import getStyle from '../styleLoad'
 import Filter from './components/filter'
 
 const style = __CLIENT__ ?
-	require('../styles/listing.styl') :
-	getStyle('../styles/listing.styl', __dirname)
+	require('../styles/listing.css') :
+	getStyle('../styles/listing.css', __dirname)
 
 export default class Listing extends Component {
 

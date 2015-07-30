@@ -1,0 +1,7 @@
+:root {
+	--mainColor: gray(10%, 50%);
+}
+
+.header {
+	color: var(--mainColor);
+}

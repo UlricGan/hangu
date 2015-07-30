@@ -34,7 +34,7 @@ router.all('/*', function *() {
 	const store = createStore(client)
 	const location = new Location(this.request.path, this.request.query)
 	try {
-		const {component, transition, isRedirect) = yield universalRouter(location, undefined, store)
+		const {component, transition, isRedirect} = yield universalRouter(location, undefined, store)
 
 		if (isRedirect) {
 			this.redirect(transition.redirectInfo.pathname)
